@@ -11,23 +11,24 @@
 # Routes
 
 ## Backend
-/api/expenses/create - POST
-/api/expenses - GET
-/api/expenses/:id = GET, PUT, DELETE
-/api/expenses/category/:id - GET, POST, DELETE
+- /api/expenses/create - POST
+- /api/expenses - GET
+- /api/expenses/:id = GET, PUT, DELETE
+- /api/expenses/category/:id - GET, POST, DELETE
 
 ## Frontend
-/
-/expenses
-/expenses/category/:id
-/interest-calculator
+- /
+- /expenses
+- /expenses/category/:id
+- /interest-calculator
 
 # Wireframe
-https://wireframe.cc/TQrl2d
-https://wireframe.cc/9fD0c9
-https://wireframe.cc/LUWcnP
+- https://wireframe.cc/TQrl2d
+- https://wireframe.cc/9fD0c9
+- https://wireframe.cc/LUWcnP
 
 # Store Structure
+```javascript
 {
     user: {
         id: 1,
@@ -39,3 +40,4 @@ https://wireframe.cc/LUWcnP
         }
     }
 }
+```

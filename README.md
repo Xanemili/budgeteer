@@ -35,9 +35,17 @@
         username: string
     },
     expenses: {
-        category: {
-            category_name: []
-        }
-    }
+        expense: [
+            {
+                expense_name: '',
+                tag: '',
+                category: '',
+            }
+        ]
+    },
+    categories: [],
 }
 ```
+
+# Schema
+![alt text](Budgeteer.png "Database")

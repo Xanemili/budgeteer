@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
-import NavBar from "./components/NavBar";
+import NavTab from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList";
-import User from "./components/User";
+import UsersList from "./components/user/UsersList";
+import User from "./components/user/User";
 import { authenticate } from "./services/auth";
+import FormDialog from './components/modals/categoryModal'
+import {FormDialog as ExpenseDialog} from './components/modals/expenseModal'
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -28,8 +30,8 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar setAuthenticated={setAuthenticated} />
-      <Route path="/login" exact={true}>
+      <NavTab setAuthenticated={setAuthenticated} />
+      <Route path="/login" exact>
         <LoginForm
           authenticated={authenticated}
           setAuthenticated={setAuthenticated}
@@ -46,6 +48,9 @@ function App() {
       </ProtectedRoute>
       <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
         <h1>My Home Page</h1>
+        <FormDialog />
+        <ExpenseDialog />
+
       </ProtectedRoute>
     </BrowserRouter>
   );

@@ -6,6 +6,7 @@ import NavTab from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/user/UsersList";
 import User from "./components/user/User";
+import ExpenseContainer from "./components/expenses/ExpenseContainer"
 import { authenticate } from "./services/auth";
 import FormDialog from './components/modals/categoryModal'
 import {FormDialog as ExpenseDialog} from './components/modals/expenseModal'
@@ -46,11 +47,12 @@ function App() {
       <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
         <User />
       </ProtectedRoute>
-      <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
-        <h1>My Home Page</h1>
+      <ProtectedRoute path="/formtests" exact={true} authenticated={authenticated}>
         <FormDialog />
         <ExpenseDialog />
-
+      </ProtectedRoute>
+      <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
+        <ExpenseContainer />
       </ProtectedRoute>
     </BrowserRouter>
   );

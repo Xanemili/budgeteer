@@ -32,14 +32,17 @@ export function FormDialog() {
       body: JSON.stringify({
         name: expenseName,
         amount,
-        date,
+        date: date.toUTCString(),
         note,
         category_id: 1
       })
     })
     let category = await response.json()
-    if (category.category) {
+    if (!category.errors) {
+      console.log(category)
       setOpen(false);
+    } else {
+      console.log(category.errors)
     }
   };
 
@@ -90,6 +93,7 @@ export function FormDialog() {
           <DatePicker
             selected={date}
             onChange={date => setDate(date)}
+            id="date"
           />
         </DialogContent>
         <DialogActions>

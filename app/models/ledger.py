@@ -1,5 +1,7 @@
 from .db import db
 import datetime
+import dateutil.parser
+import time
 
 
 class Ledger(db.Model):
@@ -16,3 +18,27 @@ class Ledger(db.Model):
     category_id = db.Column(db.Integer,
                             db.ForeignKey('categories.id'),
                             nullable=False)
+
+    categories = db.relationship('Category', back_populates='ledger_entries')
+    users = db.relationship('User', back_populates='ledger_entries')
+
+    @property
+    def date(self):
+        return self.payment_date.replace(tzinfo=timezone.utc).timestamp()
+
+    @date.setter
+    def date(self, utc):
+        print(dateutil.parser.parse(utc))
+        self.payment_date = dateutil.parser.parse(utc)
+
+    def to_dict(self, category_name):
+        return {
+            "id": self.id,
+            "transaction_type": self.transaction_type,
+            "amount": float(self.amount),
+            "note": self.note,
+            "frequency": self.frequency,
+            "payment_date": self.payment_date,
+            "category_id": self.category_id,
+            "category_name": category_name
+        }

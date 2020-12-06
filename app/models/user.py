@@ -14,6 +14,8 @@ class User(db.Model, UserMixin):
     created_on = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     updated_on = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
+    ledger_entries = db.relationship('Ledger', back_populates='users')
+
     @property
     def password(self):
         return self.hashed_password

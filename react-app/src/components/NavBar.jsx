@@ -9,6 +9,9 @@ const NavBar = ({ setAuthenticated }) => {
   return (
       <AppBar position={"static"}>
         <ToolBar>
+          <NavLink to="/" exact activeClassName="active">
+            Home
+          </NavLink>
           <NavLink to="/login" exact activeClassName="active">
             Login
           </NavLink>
@@ -17,6 +20,9 @@ const NavBar = ({ setAuthenticated }) => {
           </NavLink>
           <NavLink to="/users" exact activeClassName="active">
             Users
+          </NavLink>
+          <NavLink to="/formtests" exact activeClassName="active">
+            Forms
           </NavLink>
         <LogoutButton setAuthenticated={setAuthenticated} />
         </ToolBar>

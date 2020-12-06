@@ -8,6 +8,8 @@ class Category(db.Model):
     name = db.Column(db.String(30), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
+    ledger_entries = db.relationship('Ledger', back_populates='categories')
+
     def to_dict(self):
         return {
             "id": self.id,

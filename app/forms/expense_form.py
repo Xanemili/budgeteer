@@ -15,8 +15,8 @@ def category_exists(form, field):
 class ExpenseForm(FlaskForm):
     transaction_type = StringField('transaction_type', validators=[DataRequired()])
     amount = DecimalField('amount', places=2, validators=[DataRequired()])
-    date = DateTimeField('date', validators=[DataRequired()])
+    date = StringField('date', validators=[DataRequired()])
     note = TextAreaField('note')
-    frequency = DateTimeField('frequency')
+    frequency = StringField('frequency')
     category_id = IntegerField('category_id', validators=[DataRequired()])
     tag_ids = StringField('tag_ids')

@@ -10,7 +10,7 @@ export const EDIT_EXPENSE = 'EDIT_EXPENSE'
 export const REMOVE_EXPENSE = 'REMOVE_EXPENSE'
 
 export const loadExpenses = () => async dispatch => {
-  const response = await fetch(`/api/expenses`)
+  const response = await fetch(`/api/expenses/`)
   if (response.ok) {
     const data = await response.json();
     dispatch({
@@ -49,7 +49,7 @@ export const deleteExpense = (expenseId) => async dispatch => {
 }
 
 export const loadCategories = () => async dispatch => {
-  const response = await fetch(`/api/categories`)
+  const response = await fetch(`/api/categories/`)
   if (response.ok) {
     const data = await response.json();
     dispatch({

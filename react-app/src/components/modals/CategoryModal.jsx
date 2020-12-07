@@ -7,9 +7,10 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-export default function FormDialog() {
+export default function CategoryModal() {
   const [open, setOpen] = React.useState(false);
   const [categoryName, setCategoryName] = React.useState("")
+  const [goal, setGoal] = React.useState(0)
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -25,7 +26,8 @@ export default function FormDialog() {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify({
-        name: categoryName
+        name: categoryName,
+        goal
       })
     })
     let category = await response.json()
@@ -37,7 +39,7 @@ export default function FormDialog() {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button variant="outlined" color="secondary" onClick={handleClickOpen}>
         Create Category
       </Button>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
@@ -54,6 +56,15 @@ export default function FormDialog() {
             type="text"
             value={categoryName}
             onChange={(e) => setCategoryName(e.target.value)}
+            fullWidth
+          />
+          <TextField
+            margin="dense"
+            id="goal"
+            label="Goal"
+            type="number"
+            value={goal}
+            onChange={(e) => setGoal(e.target.value)}
             fullWidth
           />
         </DialogContent>

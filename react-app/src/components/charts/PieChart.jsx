@@ -41,9 +41,9 @@ const renderActiveShape = (props) => {
       />
       <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none" />
       <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
-      <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#333">{`PV ${value}`}</text>
+      <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#333">{`$${Math.round(value)}`}</text>
       <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} dy={18} textAnchor={textAnchor} fill="#999">
-        {`(Rate ${(percent * 100).toFixed(2)}%)`}
+        {`(${(percent * 100).toFixed(2)}%)`}
       </text>
     </g>
   );
@@ -58,9 +58,15 @@ const CustomPieChart = () => {
     setActiveIndex(index)
   }
 
-  const data = Object.keys(expenses).map(key => {
-    return {name: key, value: 2}
-  })
+  const data = []
+  for (const [key, value] of Object.entries(expenses)) {
+      data.push({
+        name: key,
+        value: value.reduce((acc, expense) => {
+          return acc + expense.amount
+        }, 0)
+      })
+  }
 
   return (
     <PieChart width={400} height={400}>

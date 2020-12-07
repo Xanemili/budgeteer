@@ -12,7 +12,11 @@ class Category(db.Model):
     ledger_entries = db.relationship('Ledger', back_populates='categories')
 
     def to_dict(self):
+        goal = self.goal
+        if goal:
+            goal = float(goal)
         return {
             "id": self.id,
-            "name": self.name
+            "name": self.name,
+            "goal": goal
         }

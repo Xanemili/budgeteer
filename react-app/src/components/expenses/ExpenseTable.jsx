@@ -25,12 +25,12 @@ const ExpenseTable = () => {
               <ExpenseDialog postUrl='create' buttonType='create'/>
             </TableCell>
             <TableCell>Category</TableCell>
-            <TableCell></TableCell>
+            <TableCell>Goal</TableCell>
             <TableCell>Expense</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {Object.keys(expenses).map(key => <ExpenseCategory key={key} name={key} category={expenses[key]} />)}
+          {Object.keys(expenses).map(key => <ExpenseCategory key={key} name={key} categoryExpenses={expenses[key]} />)}
         </TableBody>
       </Table>
     </TableContainer>

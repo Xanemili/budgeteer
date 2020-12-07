@@ -43,7 +43,7 @@ def create_expense():
 
 
 @expense_routes.route('/', methods=['GET'])
-# @login_required
+@login_required
 def view_expenses():
     expenses = db.session.query(Ledger, Category).join(Ledger.categories).filter(Ledger.user_id == 1).order_by(Ledger.category_id).all()
     data = {}

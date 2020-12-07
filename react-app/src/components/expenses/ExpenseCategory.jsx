@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import {useDispatch} from 'react-redux'
+import React, {useState, useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 
 import {deleteExpense} from '../../store/reducers/actions'
 
@@ -16,12 +16,31 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Delete from '@material-ui/icons/Delete'
 import ExpenseDialog from '../modals/expenseModal'
+import { Typography } from '@material-ui/core';
 
-const ExpenseCategory = ({ name, category }) => {
+const ExpenseCategory = ({ name, categoryExpenses }) => {
 
   const [open, setOpen] = useState(false)
+  const [summedExpenses, setSummedExpenses] = useState(0)
+  const category = useSelector(state => state.categories.find(cat => cat.name === name))
 
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    let sum = sumExpenses(categoryExpenses)
+    setSummedExpenses(sum)
+  }, [category])
+
+  const sumExpenses = (arr) => {
+    if (category) {
+      let new_sum = (arr.reduce((acc, expense) => {
+        return expense.amount + acc
+      }, 0) / category.goal)*100
+      return Math.round(new_sum)
+    } else {
+      return
+    }
+  }
 
   const expenseCreator = (item) => {
     return (
@@ -60,9 +79,18 @@ const ExpenseCategory = ({ name, category }) => {
           {name}
         </TableCell>
         <TableCell>
-          <Box>
-            <LinearProgress variant='determinate' value={42}/>
-          </Box>
+            {category ?
+          <Box display='flex' alignItems='center'>
+            <Box width='100%' mr={1}>
+              <LinearProgress variant='determinate' value={summedExpenses > 100 ? 100 : summedExpenses}/>
+            </Box>
+            <Box>
+              <Typography variant='body2' color='textSecondary'>
+                {`${summedExpenses}%`}
+              </Typography>
+            </Box>
+          </Box> :
+            null }
         </TableCell>
         <TableCell>
           Expense
@@ -84,7 +112,7 @@ const ExpenseCategory = ({ name, category }) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {category.map(expense => expenseCreator(expense))}
+                  {categoryExpenses.map(expense => expenseCreator(expense))}
                 </TableBody>
               </Table>
             </Box>

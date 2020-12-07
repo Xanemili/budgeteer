@@ -6,10 +6,10 @@ import NavTab from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/user/UsersList";
 import User from "./components/user/User";
+import LoanContainer from './components/loan/LoanContainer'
 import ExpenseContainer from "./components/expenses/ExpenseContainer"
 import { authenticate } from "./services/auth";
-import FormDialog from './components/modals/categoryModal'
-import ExpenseDialog from './components/modals/expenseModal'
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -31,7 +31,8 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavTab setAuthenticated={setAuthenticated} />
+      <CssBaseline />
+      <NavTab authenticated={authenticated} setAuthenticated={setAuthenticated} />
       <Route path="/login" exact>
         <LoginForm
           authenticated={authenticated}
@@ -41,17 +42,16 @@ function App() {
       <Route path="/sign-up" exact={true}>
         <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
       </Route>
+      <Route path="/calculators" exact={true}>
+        <LoanContainer authenticated={authenticated}/>
+      </Route>
       <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
         <UsersList/>
       </ProtectedRoute>
       <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
         <User />
       </ProtectedRoute>
-      <ProtectedRoute path="/formtests" exact={true} authenticated={authenticated}>
-        <FormDialog />
-        <ExpenseDialog postUrl='create'/>
-      </ProtectedRoute>
-      <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
+      <ProtectedRoute path="/expenses" exact={true} authenticated={authenticated}>
         <ExpenseContainer />
       </ProtectedRoute>
     </BrowserRouter>

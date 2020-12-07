@@ -9,7 +9,7 @@ import User from "./components/user/User";
 import ExpenseContainer from "./components/expenses/ExpenseContainer"
 import { authenticate } from "./services/auth";
 import FormDialog from './components/modals/categoryModal'
-import {FormDialog as ExpenseDialog} from './components/modals/expenseModal'
+import ExpenseDialog from './components/modals/expenseModal'
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -49,7 +49,7 @@ function App() {
       </ProtectedRoute>
       <ProtectedRoute path="/formtests" exact={true} authenticated={authenticated}>
         <FormDialog />
-        <ExpenseDialog />
+        <ExpenseDialog postUrl='create'/>
       </ProtectedRoute>
       <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
         <ExpenseContainer />

@@ -8,8 +8,9 @@ class Ledger(db.Model):
     __tablename__ = 'ledger'
 
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
     transaction_type = db.Column(db.String(3), nullable=False)
-    amount = db.Column(db.Numeric(2), nullable=False)
+    amount = db.Column(db.Numeric(10,2), nullable=False)
     note = db.Column(db.String(400))
     frequency = db.Column(db.Integer)
     payment_date = db.Column(db.DateTime, default=datetime.datetime.utcnow)
@@ -31,14 +32,28 @@ class Ledger(db.Model):
         print(dateutil.parser.parse(utc))
         self.payment_date = dateutil.parser.parse(utc)
 
-    def to_dict(self, category_name):
+    def to_category_dict(self, category_name):
         return {
             "id": self.id,
             "transaction_type": self.transaction_type,
+            "name": self.name,
             "amount": float(self.amount),
             "note": self.note,
             "frequency": self.frequency,
             "payment_date": self.payment_date,
             "category_id": self.category_id,
             "category_name": category_name
+        }
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "transaction_type": self.transaction_type,
+            "name": self.name,
+            "amount": float(self.amount),
+            "note": self.note,
+            "frequency": self.frequency,
+            "payment_date": self.payment_date,
+            "category_id": self.category_id,
+            "category_name": self.categories.name
         }

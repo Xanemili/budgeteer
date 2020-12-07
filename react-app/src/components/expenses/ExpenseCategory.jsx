@@ -1,4 +1,8 @@
 import React, {useState} from 'react'
+import {useDispatch} from 'react-redux'
+
+import {deleteExpense} from '../../store/reducers/actions'
+
 import Table from '@material-ui/core/Table'
 import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody'
@@ -6,15 +10,18 @@ import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell';
 import Collapse from '@material-ui/core/Collapse';
 import LinearProgress from '@material-ui/core/LinearProgress'
-import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box'
 import IconButton from '@material-ui/core/IconButton'
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import Delete from '@material-ui/icons/Delete'
+import ExpenseDialog from '../modals/expenseModal'
 
 const ExpenseCategory = ({ name, category }) => {
 
   const [open, setOpen] = useState(false)
+
+  const dispatch = useDispatch()
 
   const expenseCreator = (item) => {
     return (
@@ -22,8 +29,21 @@ const ExpenseCategory = ({ name, category }) => {
         <TableCell component='th' scope='row'>
           {item.payment_date}
         </TableCell>
-        <TableCell>{item.id}</TableCell>
+        <TableCell>{item.name}</TableCell>
+        <TableCell>Next Payment Date</TableCell>
         <TableCell align='right'>{item.amount}</TableCell>
+        <TableCell>
+            <ExpenseDialog
+              postUrl={item.id}
+              buttonType='edit'
+              item={item}
+            />
+        </TableCell>
+        <TableCell>
+          <IconButton aria-label='edit expense' size='small' onClick={() => dispatch(deleteExpense(item.id))}>
+            <Delete />
+          </IconButton>
+        </TableCell>
       </TableRow>
     )
   }
@@ -41,7 +61,7 @@ const ExpenseCategory = ({ name, category }) => {
         </TableCell>
         <TableCell>
           <Box>
-            <LinearProgress variant='determinant' value={42}/>
+            <LinearProgress variant='determinate' value={42}/>
           </Box>
         </TableCell>
         <TableCell>
@@ -57,7 +77,10 @@ const ExpenseCategory = ({ name, category }) => {
                   <TableRow>
                     <TableCell>Date</TableCell>
                     <TableCell>Name</TableCell>
+                    <TableCell>Next Payment Date</TableCell>
                     <TableCell align='right'>Amount</TableCell>
+                    <TableCell />
+                    <TableCell />
                   </TableRow>
                 </TableHead>
                 <TableBody>

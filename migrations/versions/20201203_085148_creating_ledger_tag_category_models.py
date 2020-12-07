@@ -35,7 +35,7 @@ def upgrade():
     op.create_table('ledger',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('transaction_type', sa.String(length=3), nullable=False),
-    sa.Column('amount', sa.Numeric(precision=2), nullable=False),
+    sa.Column('amount', sa.Numeric(precision=10, scale=2), nullable=False),
     sa.Column('note', sa.String(length=400), nullable=True),
     sa.Column('frequency', sa.Integer(), nullable=True),
     sa.Column('payment_date', sa.DateTime(), nullable=True),

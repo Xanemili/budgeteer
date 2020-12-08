@@ -35,7 +35,7 @@
         username: string
     },
     expenses: {
-        expense: [
+        expenseName: [
             {
                 expense_name: '',
                 tag: '',

@@ -26,21 +26,20 @@ const ExpenseCategory = ({ name, categoryExpenses }) => {
 
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    let sum = sumExpenses(categoryExpenses)
-    setSummedExpenses(sum)
-  }, [category])
 
-  const sumExpenses = (arr) => {
+
+  useEffect(() => {
     if (category) {
-      let new_sum = (arr.reduce((acc, expense) => {
+      let new_sum = (categoryExpenses.reduce((acc, expense) => {
         return expense.amount + acc
-      }, 0) / category.goal)*100
-      return Math.round(new_sum)
+      }, 0) / category.goal) * 100
+      setSummedExpenses(Math.round(new_sum))
     } else {
       return
     }
-  }
+  }, [category, categoryExpenses])
+
+
 
   const expenseCreator = (item) => {
     return (

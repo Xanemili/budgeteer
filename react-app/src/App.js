@@ -8,6 +8,7 @@ import UsersList from "./components/user/UsersList";
 import User from "./components/user/User";
 import LoanContainer from './components/loan/LoanContainer'
 import ExpenseContainer from "./components/expenses/ExpenseContainer"
+import SplashPage from './components/SplashPage'
 import { authenticate } from "./services/auth";
 import CssBaseline from '@material-ui/core/CssBaseline';
 
@@ -44,6 +45,9 @@ function App() {
       </Route>
       <Route path="/calculators" exact={true}>
         <LoanContainer authenticated={authenticated}/>
+      </Route>
+      <Route path="/landing">
+        <SplashPage authenticated={authenticated}/>
       </Route>
       <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
         <UsersList/>

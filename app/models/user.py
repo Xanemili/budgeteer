@@ -15,6 +15,7 @@ class User(db.Model, UserMixin):
     updated_on = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     ledger_entries = db.relationship('Ledger', back_populates='users')
+    tags = db.relationship('Tag', backref='user')
 
     @property
     def password(self):

@@ -34,6 +34,9 @@ function App() {
     <BrowserRouter>
       <CssBaseline />
       <NavTab authenticated={authenticated} setAuthenticated={setAuthenticated} />
+      <Route path="/" exact>
+        <SplashPage authenticated={authenticated}/>
+      </Route>
       <Route path="/login" exact>
         <LoginForm
           authenticated={authenticated}
@@ -45,9 +48,6 @@ function App() {
       </Route>
       <Route path="/calculators" exact={true}>
         <LoanContainer authenticated={authenticated}/>
-      </Route>
-      <Route path="/landing">
-        <SplashPage authenticated={authenticated}/>
       </Route>
       <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
         <UsersList/>

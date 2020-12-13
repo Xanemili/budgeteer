@@ -11,6 +11,7 @@ import ExpenseContainer from "./components/expenses/ExpenseContainer"
 import SplashPage from './components/SplashPage'
 import { authenticate } from "./services/auth";
 import CssBaseline from '@material-ui/core/CssBaseline';
+import CreateTag from "./components/tags/CreateTag";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -57,6 +58,9 @@ function App() {
       </ProtectedRoute>
       <ProtectedRoute path="/expenses" exact={true} authenticated={authenticated}>
         <ExpenseContainer />
+      </ProtectedRoute>
+      <ProtectedRoute path="/test" exact={true} authenticated={authenticated}>
+        <CreateTag />
       </ProtectedRoute>
     </BrowserRouter>
   );

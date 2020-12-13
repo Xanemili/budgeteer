@@ -17,3 +17,10 @@ class Tag(db.Model):
 
     expenses = db.relationship(
         'Ledger', secondary='ledger_tag', back_populates='tags')
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "user_id": self.user_id
+        }

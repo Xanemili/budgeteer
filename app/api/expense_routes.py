@@ -57,7 +57,7 @@ def view_expenses():
 
 
 @expense_routes.route('/<int:id>', methods=['POST', 'DELETE'])
-# @login_required
+@login_required
 def edit_expense(id):
     expense = Ledger.query.get_or_404(id)
 

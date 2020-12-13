@@ -1,5 +1,6 @@
 import React from 'react'
 import LoanCalculator from './LoanCalculator'
+import PaymentBreakdown from './PaymentBreakdown'
 import {makeStyles} from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 
@@ -22,6 +23,7 @@ const LoanContainer = () => {
     <main className={classes.content}>
       <Container maxWidth="lg" className={classes.container}>
         <LoanCalculator />
+        <PaymentBreakdown />
       </Container>
     </main>
   )

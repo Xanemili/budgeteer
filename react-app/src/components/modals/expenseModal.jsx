@@ -46,7 +46,7 @@ const ExpenseDialog = ({postUrl, buttonType, item}) => {
   }
 
   const handleSubmit = async () => {
-    // this could be moved to the 'actions.js' file to consolidate. here to show issues with proxy requests.
+    // this could be moved to the 'actions.js' file to consolidate.
     const response = await fetch(`/api/expenses/${postUrl}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

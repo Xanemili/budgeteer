@@ -22,6 +22,7 @@ class Ledger(db.Model):
 
     categories = db.relationship('Category', back_populates='ledger_entries')
     users = db.relationship('User', back_populates='ledger_entries')
+    tags = db.relationship('Tag', secondary='ledger_tag', back_populates='expenses')
 
     @property
     def date(self):

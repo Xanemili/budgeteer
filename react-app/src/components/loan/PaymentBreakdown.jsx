@@ -11,27 +11,22 @@ import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
 } from 'recharts';
 
-const PaymentBreakdown = () => {
+const PaymentBreakdown = ({balance, setBalance, payment, setPayment, interestRate}) => {
 
-  const [data, setData] = useState()
-  const [balance, setBalance] = useState(250000)
-  // const [principal, setPrincipal] = useState(0)
-  // const [interest, setInterest] = useState(0)
-  const [payment, setPayment] = useState(10000)
-  const [interestRate, setInterestRate] = useState(.025)
-  
+  const [data, setData] = useState([]);
+
   useEffect(() => {
     const updateData = () => {
       const startDate = new Date()
       let date = startDate;
-      let balanceData = 250000;
+      let balanceData = balance;
       let principalData = 0;
       let interestData = 0;
   
       let newData = [{date, balance: balanceData, principal: principalData, interest: interestData}]
   
       while (balanceData > 0) {
-        let interestExpense =  (balanceData * interestRate)
+        let interestExpense =  (balanceData * (interestRate/100))
         interestData = interestExpense + interestData
         principalData = principalData + (payment - interestExpense)
         balanceData = balanceData - (payment - interestExpense)
@@ -43,14 +38,16 @@ const PaymentBreakdown = () => {
           interest: interestData
         })
       }
+      console.log(newData)
       setData(newData)
     }
     updateData()
-  }, [balance])
+  }, [balance, setBalance])
+
 
   return (
     <Paper>
-      <Grid container spacing={3}>
+      <Grid container spacing={3} width='100%'>
         <Grid item xs={3}>
           <ResponsiveContainer width={900} height={500}>
 

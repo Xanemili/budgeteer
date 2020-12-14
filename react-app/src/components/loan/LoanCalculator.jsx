@@ -25,27 +25,25 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const LoanCalculator = () => {
-  const [length, setLength] = useState(10)
-  const [loanAmount, setLoanAmount] = useState(30000 / 0.20)
-  const [downPayment, setDownPayment] = useState(30000)
-  const [percent, setPercent] = useState(20)
-  const [interestRate, setInterestRate] = useState(2.5)
+const LoanCalculator = (props) => {
 
+  const {length, setLength, loanAmount, setLoanAmount, downPayment, setDownPayment, percent, setPercent, interestRate, setInterestRate, setBalance} = props
   const classes = useStyles()
 
   const handleChange = (event, newValue) => {
     setLoanAmount(newValue)
-    setDownPayment(newValue * percent/100)
+    setDownPayment(newValue * (percent/100))
   }
 
   const setPayment = (e) => {
     if (e.target.id === 'down-payment') {
       setDownPayment(e.target.value)
-      setPercent(e.target.value / loanAmount)
+      setPercent((e.target.value / loanAmount)*100)
+      setBalance(loanAmount - e.target.value)
     } else if (e.target.id === 'percentage') {
       setPercent(e.target.value)
-      setDownPayment(loanAmount * (percent/100))
+      setDownPayment(loanAmount * (e.target.value/100))
+      setBalance(loanAmount - loanAmount * (e.target.value/100))
     }
   }
 

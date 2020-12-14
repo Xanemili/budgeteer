@@ -85,10 +85,10 @@ const ExpenseCategory = ({ name, categoryExpenses }) => {
               </Typography>
             </Box>
             <Box width='70%' mr={1}>
-              <LinearProgress variant='determinate' value={summedExpenses > 100 ? 100 : summedExpenses}/>
+              <LinearProgress variant='determinate' value={summedExpenses > 100 ? 100 : summedExpenses} />
             </Box>
             <Box>
-              <Typography variant='body2' color='textSecondary'>
+              <Typography variant='body2' color={!(summedExpenses > 100) ? 'textSecondary' : 'error'}>
                 {`${summedExpenses}%`}
               </Typography>
             </Box>

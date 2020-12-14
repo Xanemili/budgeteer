@@ -10,6 +10,8 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell'
 import TableBody from '@material-ui/core/TableBody';
 import ExpenseDialog from '../modals/expenseModal';
+import CategoryModal from '../modals/CategoryModal';
+import Typography from '@material-ui/core/Typography'
 
 
 const ExpenseTable = () => {
@@ -24,9 +26,18 @@ const ExpenseTable = () => {
             <TableCell>
               <ExpenseDialog postUrl='create' buttonType='create'/>
             </TableCell>
-            <TableCell>Category</TableCell>
-            <TableCell>Goal</TableCell>
-            <TableCell>Expense</TableCell>
+            <TableCell> 
+              <div className='table-container__category'>
+                <Typography variant='h6'>  
+                Category 
+                </Typography>
+                <CategoryModal /> 
+              </div></TableCell>
+            <TableCell>
+            <Typography variant='h6'>  
+                Goal
+            </Typography>
+              </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

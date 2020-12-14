@@ -25,5 +25,5 @@ def create_category():
 @category_routes.route('/', methods=['GET'])
 @login_required
 def view_categories():
-    categories = Category.query.filter(Category.user_id == 1)
+    categories = Category.query.filter(Category.user_id == current_user.id)
     return {"categories": [category.to_dict() for category in categories]}

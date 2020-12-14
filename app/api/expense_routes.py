@@ -23,9 +23,6 @@ def create_expense():
     form = ExpenseForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     form['transaction_type'].data = "CRE"
-    print(form.validate())
-    print(form.data)
-    print(request.get_json())
     if form.validate_on_submit():
         entry = Ledger(
             transaction_type="CRE",
@@ -45,7 +42,7 @@ def create_expense():
 @expense_routes.route('/', methods=['GET'])
 @login_required
 def view_expenses():
-    expenses = db.session.query(Ledger, Category).join(Ledger.categories).filter(Ledger.user_id == 1).order_by(Ledger.category_id).all()
+    expenses = db.session.query(Ledger, Category).join(Ledger.categories).filter(Ledger.user_id == current_user.id).order_by(Ledger.category_id).all()
     data = {}
     categories = {}
     for expense in expenses:
@@ -79,7 +76,7 @@ def edit_expense(id):
             expense.amount = form.data["amount"]
             expense.date = form.data["date"]
             expense.note = form.data["note"]
-            expense.user_id = 1 #this will need to be updated with current_user.id
+            expense.user_id = current_user.id #this will need to be updated with current_user.id
             expense.category_id = form.data["category_id"]
             db.session.commit()
             return expense.to_dict()

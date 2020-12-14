@@ -47,7 +47,7 @@ const ExpenseCategory = ({ name, categoryExpenses }) => {
           {item.payment_date}
         </TableCell>
         <TableCell>{item.name}</TableCell>
-        <TableCell>Next Payment Date</TableCell>
+        <TableCell>{!item.frequency ? null : 2}</TableCell> 
         <TableCell align='right'>{item.amount}</TableCell>
         <TableCell>
             <ExpenseDialog
@@ -78,8 +78,13 @@ const ExpenseCategory = ({ name, categoryExpenses }) => {
         </TableCell>
         <TableCell>
             {category ?
-          <Box display='flex' alignItems='center'>
-            <Box width='100%' mr={1}>
+          <Box display='flex' alignItems='center' className='goal-progress' justifyContent='space-between'>
+            <Box>
+              <Typography variant='body2' color='textSecondary'>
+                {new Intl.NumberFormat('en-US',{style: 'currency', currency: 'USD'}).format(category.goal)}
+              </Typography>
+            </Box>
+            <Box width='70%' mr={1}>
               <LinearProgress variant='determinate' value={summedExpenses > 100 ? 100 : summedExpenses}/>
             </Box>
             <Box>
@@ -89,9 +94,6 @@ const ExpenseCategory = ({ name, categoryExpenses }) => {
             </Box>
           </Box> :
             null }
-        </TableCell>
-        <TableCell>
-          Expense
         </TableCell>
       </TableRow>
       <TableRow>

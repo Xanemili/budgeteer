@@ -26,7 +26,6 @@ const CreateTag = () => {
       <Button onClick={() => dispatch(deleteTag(2))}>
         DELETE TAG
       </Button>
-      {console.log(tags)}
     </div>
   )
 }

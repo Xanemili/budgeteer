@@ -43,7 +43,6 @@ const PaymentBreakdown = () => {
           interest: interestData
         })
       }
-      console.log(newData)
       setData(newData)
     }
     updateData()

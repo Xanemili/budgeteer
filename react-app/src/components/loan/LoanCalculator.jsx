@@ -29,24 +29,23 @@ const LoanCalculator = () => {
   const [length, setLength] = useState(10)
   const [loanAmount, setLoanAmount] = useState(30000 / 0.20)
   const [downPayment, setDownPayment] = useState(30000)
-  const [percent, setPercent] = useState(0.20)
+  const [percent, setPercent] = useState(20)
   const [interestRate, setInterestRate] = useState(2.5)
 
   const classes = useStyles()
 
   const handleChange = (event, newValue) => {
     setLoanAmount(newValue)
-    setDownPayment(newValue * percent)
+    setDownPayment(newValue * percent/100)
   }
 
   const setPayment = (e) => {
-    console.log(e.target)
     if (e.target.id === 'down-payment') {
       setDownPayment(e.target.value)
       setPercent(e.target.value / loanAmount)
     } else if (e.target.id === 'percentage') {
       setPercent(e.target.value)
-      setDownPayment(loanAmount * percent)
+      setDownPayment(loanAmount * (percent/100))
     }
   }
 

@@ -4,7 +4,6 @@ const expenseReducer = (state={}, action) => {
     const state_copy = {...state}
     switch (action.type){
         case ADD_EXPENSE:
-            console.log(action)
             if (state_copy[action.data.category_name]) {
                 state_copy[action.data.category_name].push(action.data)
             } else {
@@ -20,7 +19,6 @@ const expenseReducer = (state={}, action) => {
             return state_copy
         case LOAD_EXPENSES_SUCCESS:
             let new_state = action.data
-            console.log(new_state)
             return new_state;
         case LOAD_EXPENSES_FAILURE:
             return state_copy;

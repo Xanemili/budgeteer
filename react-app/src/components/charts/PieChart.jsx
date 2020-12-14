@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux'
-import { PieChart, Pie, Sector } from 'recharts';
+import { PieChart, Pie, Sector, ResponsiveContainer } from 'recharts';
 
 const renderActiveShape = (props) => {
   const RADIAN = Math.PI / 180;
@@ -69,20 +69,22 @@ const CustomPieChart = () => {
   }
 
   return (
-    <PieChart width={400} height={400}>
-      <Pie
-        activeIndex={activeIndex}
-        activeShape={renderActiveShape}
-        data={data}
-        cx={200}
-        cy={200}
-        innerRadius={60}
-        outerRadius={80}
-        fill="#8884d8"
-        dataKey="value"
-        onMouseEnter={onPieEnter}
-      />
-    </PieChart>
+    <ResponsiveContainer width={1200} height={400}>
+      <PieChart margin={{top: 5, left: 140, right: 20, bottom: 5}}>
+        <Pie
+          activeIndex={activeIndex}
+          activeShape={renderActiveShape}
+          data={data}
+          cx={200}
+          cy={200}
+          innerRadius={90}
+          outerRadius={130}
+          fill="#8884d8"
+          dataKey="value"
+          onMouseEnter={onPieEnter}
+        />
+      </PieChart>
+    </ResponsiveContainer>
   )
 
 }

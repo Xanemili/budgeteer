@@ -4,7 +4,6 @@ import LogoutButton from './auth/LogoutButton';
 import AppBar from '@material-ui/core/AppBar';
 import ToolBar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography'
-import CategoryModal from './modals/CategoryModal'
 
 
 const NavBar = ({authenticated, setAuthenticated }) => {
@@ -27,7 +26,6 @@ const NavBar = ({authenticated, setAuthenticated }) => {
             <NavLink to="/calculators" exact activeClassName="active" className='navbar__link'>
               Calculators
             </NavLink>
-            <CategoryModal />
           </div>
           <LogoutButton setAuthenticated={setAuthenticated} />
         </ToolBar> :

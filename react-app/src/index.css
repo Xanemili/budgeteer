@@ -35,3 +35,20 @@ body, html {
     color: darkslategrey;
     padding-left: 12px;
 }
+
+.goal-progress {
+    padding: 3px;
+    margin: 2px;
+}
+
+.expenses__piechart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.table-container__category{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

@@ -6,6 +6,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import AddBox from '@material-ui/icons/AddBox'
+import IconButton from '@material-ui/core/IconButton'
 
 export default function CategoryModal() {
   const [open, setOpen] = React.useState(false);
@@ -39,9 +41,9 @@ export default function CategoryModal() {
 
   return (
     <div>
-      <Button variant="outlined" color="secondary" onClick={handleClickOpen}>
-        Create Category
-      </Button>
+      <IconButton variant="outlined" onClick={handleClickOpen}>
+        <AddBox />
+      </IconButton>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Create Category</DialogTitle>
         <DialogContent>

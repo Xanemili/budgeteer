@@ -51,7 +51,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   };
 
   if (authenticated) {
-    return <Redirect to="/" />;
+    return <Redirect to="/expenses" />;
   }
 
   return (
@@ -99,6 +99,12 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
                 <NavLink to="/sign-up" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </NavLink>
+                <Button color='primary' onClick={() => {
+                  setEmail('demo@aa.io')
+                  setPassword('password')
+                }}>
+                  Demo User
+                </Button>
               </Grid>
             </Grid>
         </form>

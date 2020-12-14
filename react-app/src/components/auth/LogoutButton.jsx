@@ -1,5 +1,6 @@
 import React from "react";
 import { logout } from "../../services/auth";
+import Button from '@material-ui/core/Button'
 
 const LogoutButton = ({setAuthenticated}) => {
   const onLogout = async (e) => {
@@ -7,7 +8,11 @@ const LogoutButton = ({setAuthenticated}) => {
     setAuthenticated(false);
   };
 
-  return <button onClick={onLogout}>Logout</button>;
+  return(
+    <Button onClick={onLogout} size='sm'>
+      Logout
+    </Button> 
+  ) 
 };
 
 export default LogoutButton;

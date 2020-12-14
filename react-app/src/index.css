@@ -3,9 +3,35 @@ body, html {
 }
 
 .bg {
-    background-image: url("./images/ana-hitomi-urano-h2FMXm1sN98-unsplash.jpg");
-    height: 100vh;
+    background-image: url("./images/michael-longmire-RhBVoJnRqVg-unsplash.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
+    height: calc(100vh - 100px);
+}
+
+.splash-layout {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 40px;
+    flex-direction: column;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar-container__navigation {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.navbar__link {
+    text-decoration: none;
+    color: darkslategrey;
+    padding-left: 12px;
 }

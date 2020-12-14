@@ -12,32 +12,35 @@ const NavBar = ({authenticated, setAuthenticated }) => {
   return (
     <AppBar position={"sticky"}>
       {authenticated ?
-        <ToolBar>
-          <NavLink to="/" exact activeClassName="active">
-            <Typography variant="h5">
-              Budgeteer
-            </Typography>
-          </NavLink>
-          <NavLink to="/expenses" exact activeClassName="active">
-            Expenses
-          </NavLink>
-          <NavLink to="/calculators" exact activeClassName="active">
-            Calculators
-          </NavLink>
-          <NavLink to="/users" exact activeClassName="active">
-            Users
-          </NavLink>
-          <CategoryModal />
+        <ToolBar className='navbar-container'>
+          
+          <div className='navbar-container__navigation'>
+            <NavLink to="/" exact activeClassName="active" className='navbar__link'>
+              <Typography variant="h5" >
+                Budgeteer
+              </Typography>
+            </NavLink>
+        
+            <NavLink to="/expenses" exact activeClassName="active" className='navbar__link'>
+              Expenses
+            </NavLink>
+            <NavLink to="/calculators" exact activeClassName="active" className='navbar__link'>
+              Calculators
+            </NavLink>
+            <CategoryModal />
+          </div>
           <LogoutButton setAuthenticated={setAuthenticated} />
         </ToolBar> :
         <ToolBar>
-          <NavLink to="/" exact activeClassName="active">
-            Home
+          <NavLink to="/" exact activeClassName="active" className='navbar__link'>
+            <Typography>
+              Budgeteer
+            </Typography>
           </NavLink>
-          <NavLink to="/login" exact activeClassName="active">
+          <NavLink to="/login" exact activeClassName="active" className='navbar__link'>
             Login
           </NavLink>
-          <NavLink to="/sign-up" exact activeClassName="active">
+          <NavLink to="/sign-up" exact activeClassName="active" className='navbar__link'>
             Sign Up
           </NavLink>
         </ToolBar>}

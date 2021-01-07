@@ -15,6 +15,7 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Delete from '@material-ui/icons/Delete'
 import ExpenseDialog from '../modals/expenseModal'
+import TagList from '../tags/TagList'
 import { Typography } from '@material-ui/core';
 
 const ExpenseCategory = ({ name, categoryExpenses }) => {
@@ -47,6 +48,9 @@ const ExpenseCategory = ({ name, categoryExpenses }) => {
           {item.payment_date}
         </TableCell>
         <TableCell>{item.name}</TableCell>
+        <TableCell>
+          <TagList tags={item.tags} id={item.id}/>
+        </TableCell>
         <TableCell>{!item.frequency ? null : 2}</TableCell> 
         <TableCell align='right'>{item.amount}</TableCell>
         <TableCell>
@@ -105,6 +109,7 @@ const ExpenseCategory = ({ name, categoryExpenses }) => {
                   <TableRow>
                     <TableCell>Date</TableCell>
                     <TableCell>Name</TableCell>
+                    <TableCell>Tags</TableCell>
                     <TableCell>Next Payment Date</TableCell>
                     <TableCell align='right'>Amount</TableCell>
                     <TableCell />

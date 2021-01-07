@@ -56,3 +56,12 @@ body, html {
 .bad-expense {
     color: red
 }
+
+.expense__tag {
+    border: solid 1px black;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: tan
+}

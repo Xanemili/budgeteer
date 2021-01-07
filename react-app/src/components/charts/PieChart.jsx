@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux'
-import { PieChart, Pie, Sector, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Sector, ResponsiveContainer, Cell } from 'recharts';
+
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
 const renderActiveShape = (props) => {
   const RADIAN = Math.PI / 180;
@@ -79,10 +81,15 @@ const CustomPieChart = () => {
           cy={200}
           innerRadius={90}
           outerRadius={130}
-          fill="#8884d8"
+          fill="#00000"
           dataKey="value"
           onMouseEnter={onPieEnter}
-        />
+          >
+          {
+            data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}/>)
+          }
+          </Pie>
+        
       </PieChart>
     </ResponsiveContainer>
   )

@@ -33,7 +33,7 @@ class Ledger(db.Model):
         print(dateutil.parser.parse(utc))
         self.payment_date = dateutil.parser.parse(utc)
 
-    def to_category_dict(self, category_name):
+    def to_category_dict(self):
         return {
             "id": self.id,
             "transaction_type": self.transaction_type,
@@ -43,7 +43,8 @@ class Ledger(db.Model):
             "frequency": self.frequency,
             "payment_date": self.payment_date,
             "category_id": self.category_id,
-            "category_name": category_name
+            "category_name": self.categories.name,
+            "tags": [tag.to_dict() for tag in self.tags]
         }
 
     def to_dict(self):

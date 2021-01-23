@@ -24,6 +24,7 @@ const ExpenseTable = () => {
         <TableHead>
           <TableRow>
             <TableCell>
+              Create Expense
               <ExpenseDialog postUrl='create' buttonType='create'/>
             </TableCell>
             <TableCell> 

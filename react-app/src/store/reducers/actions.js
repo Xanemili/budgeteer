@@ -107,6 +107,14 @@ export const editTag = (body, id) => async dispatch => {
       type: EDIT_TAG,
       data: data.tag
     })
+    return 'success'
+  } else {
+    const err = await response.json()
+    dispatch({
+      type: LOAD_TAGS_FAILURE,
+      data: err
+    })
+    return 'failure'
   }
 }
 

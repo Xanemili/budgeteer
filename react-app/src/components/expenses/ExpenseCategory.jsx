@@ -43,7 +43,7 @@ const ExpenseCategory = ({ name, categoryExpenses }) => {
 
   const expenseCreator = (item) => {
     return (
-      <TableRow key={item.id}>
+      <TableRow key={item.id} >
         <TableCell component='th' scope='row'>
           {item.payment_date}
         </TableCell>
@@ -61,7 +61,9 @@ const ExpenseCategory = ({ name, categoryExpenses }) => {
             />
         </TableCell>
         <TableCell>
-          <IconButton aria-label='edit expense' size='small' onClick={() => dispatch(deleteExpense(item.id))}>
+          <IconButton aria-label='edit expense' size='small' onClick={() => {
+            dispatch(deleteExpense(item.id))
+          }}>
             <Delete />
           </IconButton>
         </TableCell>

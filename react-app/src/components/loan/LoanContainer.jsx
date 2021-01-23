@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import LoanCalculator from './LoanCalculator'
 import PaymentBreakdown from './PaymentBreakdown'
 import {makeStyles} from '@material-ui/core/styles'

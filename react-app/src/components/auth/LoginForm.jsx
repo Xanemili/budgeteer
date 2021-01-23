@@ -94,8 +94,8 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
             <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
               Sign In
             </Button>
-            <Grid container>
-              <Grid item justify="center">
+            <Grid container justify='center'>
+              <Grid item>
                 <NavLink to="/sign-up" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </NavLink>

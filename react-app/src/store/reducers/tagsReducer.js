@@ -4,6 +4,7 @@ const tagsReducer = (state=[], action) => {
   const state_copy = [...state]
   switch (action.type) {
     case ADD_TAG:
+      console.log(state_copy)
       state_copy.push(action.data)
       return state_copy
     case EDIT_TAG:
@@ -17,6 +18,8 @@ const tagsReducer = (state=[], action) => {
       return new_state;
     case LOAD_TAGS_SUCCESS:
       return action.data;
+    case LOAD_TAGS_FAILURE:
+      return state_copy;
     default:
       return state;
   }

@@ -6,7 +6,7 @@ import tagsReducer from './tagsReducer'
 const rootReducer = combineReducers({
     expenses: expenseReducer,
     categories: categoryReducer,
-    tags: tagsReducer
+    tags: tagsReducer,
 })
 
 export default rootReducer

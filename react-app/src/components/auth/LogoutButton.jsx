@@ -9,10 +9,10 @@ const LogoutButton = ({setAuthenticated}) => {
   };
 
   return(
-    <Button onClick={onLogout} size='sm'>
+    <Button onClick={onLogout} size='small'>
       Logout
-    </Button> 
-  ) 
+    </Button>
+  )
 };
 
 export default LogoutButton;

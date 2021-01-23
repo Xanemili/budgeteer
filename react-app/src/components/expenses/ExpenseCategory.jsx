@@ -22,6 +22,7 @@ const ExpenseCategory = ({ name, categoryExpenses }) => {
 
   const [open, setOpen] = useState(false)
   const [summedExpenses, setSummedExpenses] = useState(0)
+  const [goalPercent, setGoalPercent] = useState(0)
   const category = useSelector(state => state.categories.find(cat => cat.name === name))
 
   const dispatch = useDispatch()
@@ -32,8 +33,13 @@ const ExpenseCategory = ({ name, categoryExpenses }) => {
     if (category) {
       let new_sum = (categoryExpenses.reduce((acc, expense) => {
         return expense.amount + acc
-      }, 0) / category.goal) * 100
-      setSummedExpenses(Math.round(new_sum))
+      }, 0))
+      setSummedExpenses(new_sum)
+      if (category.goal) {
+        setGoalPercent(Math.round(new_sum / category.goal) * 100)
+      } else {
+        setGoalPercent(0)
+      }
     } else {
       return
     }
@@ -51,7 +57,7 @@ const ExpenseCategory = ({ name, categoryExpenses }) => {
         <TableCell>
           <TagList tags={item.tags} id={item.id}/>
         </TableCell>
-        <TableCell>{!item.frequency ? null : 2}</TableCell> 
+        <TableCell>{!item.frequency ? null : 2}</TableCell>
         <TableCell align='right'>{item.amount}</TableCell>
         <TableCell>
             <ExpenseDialog
@@ -89,11 +95,11 @@ const ExpenseCategory = ({ name, categoryExpenses }) => {
               </Typography>
             </Box>
             <Box width='70%' mr={1}>
-              <LinearProgress variant='determinate' value={summedExpenses > 100 ? 100 : summedExpenses} />
+              <LinearProgress variant='determinate' value={goalPercent > 100 ? 100 : goalPercent} />
             </Box>
             <Box>
               <Typography variant='body2' color={!(summedExpenses > 100) ? 'textSecondary' : 'error'}>
-                {`${summedExpenses}%`}
+                {goalPercent ? `${goalPercent}%` : 'Set Goal'}
               </Typography>
             </Box>
           </Box> :

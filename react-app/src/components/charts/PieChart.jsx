@@ -71,16 +71,16 @@ const CustomPieChart = () => {
   }
 
   return (
-    <ResponsiveContainer width={1200} height={400}>
-      <PieChart margin={{top: 5, left: 140, right: 20, bottom: 5}}>
+    <ResponsiveContainer width={'100%'} height={400}>
+      <PieChart margin={{top: 5, left: 5, right: 5, bottom: 5}}>
         <Pie
           activeIndex={activeIndex}
           activeShape={renderActiveShape}
           data={data}
-          cx={200}
+          cx={'50%'}
           cy={200}
           innerRadius={90}
-          outerRadius={130}
+          outerRadius={100}
           fill="#00000"
           dataKey="value"
           onMouseEnter={onPieEnter}
@@ -89,7 +89,6 @@ const CustomPieChart = () => {
             data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}/>)
           }
           </Pie>
-        
       </PieChart>
     </ResponsiveContainer>
   )

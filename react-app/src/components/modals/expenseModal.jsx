@@ -61,7 +61,7 @@ const ExpenseDialog = ({postUrl, buttonType, item}) => {
     let data = await response.json()
     if (!data.errors) {
       let type = (buttonType !== 'edit' ? ADD_EXPENSE : EDIT_EXPENSE);
-
+      console.log(data)
       dispatch({type, data: data})
       setOpen(false);
     } else {

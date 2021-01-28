@@ -17,6 +17,7 @@ import Typography from '@material-ui/core/Typography'
 const ExpenseTable = () => {
 
   const expenses = useSelector(state => state.expenses)
+  const categories = useSelector(state => state.categories)
 
   return (
     <TableContainer componenet={Paper}>
@@ -42,7 +43,7 @@ const ExpenseTable = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {Object.keys(expenses).map(key => <ExpenseCategory key={key} name={key} categoryExpenses={expenses[key]} />)}
+          {categories.map(category => <ExpenseCategory key={category.name} name={category.name} categoryExpenses={expenses[category.name]} />)}
         </TableBody>
       </Table>
     </TableContainer>

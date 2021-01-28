@@ -26,4 +26,5 @@ def create_category():
 @login_required
 def view_categories():
     categories = Category.query.filter(Category.user_id == current_user.id)
+    print(categories)
     return {"categories": [category.to_dict() for category in categories]}

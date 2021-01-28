@@ -1,6 +1,6 @@
 import {ADD_CATEGORY, REMOVE_CATEGORY, LOAD_CATEGORIES_FAILURE, LOAD_CATEGORIES_SUCCESS} from './actions'
 
-const categoryReducer = (state=[{id: 1, name: 'No Categories'}], action) => {
+const categoryReducer = (state=[], action) => {
     const state_copy = [...state]
     switch (action.type) {
         case ADD_CATEGORY:

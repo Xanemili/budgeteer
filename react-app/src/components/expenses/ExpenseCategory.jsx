@@ -29,7 +29,7 @@ const ExpenseCategory = ({ name, categoryExpenses }) => {
 
 
   useEffect(() => {
-    if (category) {
+    if (category && categoryExpenses > 0) {
       let new_sum = (categoryExpenses.reduce((acc, expense) => {
         return expense.amount + acc
       }, 0) / category.goal) * 100
@@ -119,7 +119,8 @@ const ExpenseCategory = ({ name, categoryExpenses }) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {categoryExpenses.map(expense => expenseCreator(expense))}
+                  
+                  {categoryExpenses ? categoryExpenses.map(expense => expenseCreator(expense)) : null}
                 </TableBody>
               </Table>
             </Box>

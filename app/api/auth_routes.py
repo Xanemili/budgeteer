@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db
+from app.models import User, Category, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -71,6 +71,15 @@ def sign_up():
         db.session.add(user)
         db.session.commit()
         login_user(user)
+        # adding default categories here
+        cateogries = [
+            Category(name='Utilities', user_id=user.id, goal=200),
+            Category(name='Rent', user_id=user.id, goal=800),
+            Category(name='Groceries', user_id=user.id, goal=350),
+            Category(name='Miscellaneous', user_id=user.id, goal=500)
+        ]
+        db.session.add_all(cateogries)
+        db.session.commit()
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}
 
